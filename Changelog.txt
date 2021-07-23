@@ -1,0 +1,14 @@
+Version 0.1 - 6/20/21-------------------------------------
+- created project
+-> 6/22/21
+- implemented driver code
+- made my own comments on gfg's code to hopefully make things clearer
+- declared function names so warnings would stop yelling at me
+-> 6/23/21
+- implemented fileBug function
+- started fixing problems with c-related function calls
+-> 7/04/21
+- finished fixing problems with function calls
+-> 7/8/2021
+- implemented bugStatus function
+- implemented report function
