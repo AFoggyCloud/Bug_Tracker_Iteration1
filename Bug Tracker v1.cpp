@@ -1,9 +1,5 @@
 //very basic program to, as filename suggests, track bugs
 
-//original program design can be found at geeksforgeeks.org/bug-tracking-system
-//I've taken inspiration from there, rewrote it in C++ since that's the language I'm more familiar with,
-//and will tweak what I see fit as I need to
-
 /* TO-DO:
 - (possibly) change time-dependent functions to rely on <chrono> instead of current <ctime>
 - fix strcat_s in fileBug to work with string variables
