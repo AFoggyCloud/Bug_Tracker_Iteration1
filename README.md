@@ -1,5 +1,5 @@
 # Bug_Tracker_Iteration1
-Basically a copy/paste of the Bug Tracker that I have on my hard drive
+Upload of the Bug Tracker that I have on my hard drive
 
 This is my first real foray into what I, in my limited experience, would consider to be programming at a professional level. Kind of thinking along the lines of "what kind of projects would I see in an actual corporate environment?" First thing that came to mind was a bug tracker.
 That said, the program isn't one that I made from scratch. I took inspiration from the design found here -> geeksforgeeks.org/bug-tracking-system
