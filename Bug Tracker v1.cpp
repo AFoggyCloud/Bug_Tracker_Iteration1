@@ -95,10 +95,10 @@ void fileBug(int id)
     cout << "Enter your name: " << "\n";
     cin >> name;
     char ids[10];
-    _itoa_s(id, ids, 10);
-    strcat_s(name, ids);
+    _itoa(id, ids, 10);
+    strcat(name, ids);
     char ex[] = ".txt";
-    strcat_s(name, ex);
+    strcat(name, ex);
 
     //filename of the bug
     cout << "Filename: " << name << "\n";
@@ -203,7 +203,7 @@ void changeStatus()
     cout << "Enter file name: " << "\n";
     cin >> name;
     char ex[] = ".txt";
-    strcat_s(name, ex);
+    strcat(name, ex);
     
     //opening the bug in append mode
     ifile.open(name, ios_base::app);
@@ -259,7 +259,7 @@ void report()
     cout << "Enter the file name:" << "\n";
     cin >> name;
     char ex[] = ".txt";
-    strcat_s(name, ex);
+    strcat(name, ex);
 
     //opening the file in read mode
     //subsequent code heavily altered from original gfg's code upon implementation - updated to C++ standards
