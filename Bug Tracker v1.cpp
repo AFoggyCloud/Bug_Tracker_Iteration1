@@ -20,6 +20,9 @@ void changeStatus(); //function to change status of a desired bug
 void report();  //function to report bug in the bug tracking system
                 //upon having written the function, this description is a little misleading - the function actually just reads the file and prints it to the screen
 
+//custom written string concatenation function, as strcat was having issues with my compiler
+string strCat(string base, string toAdd);
+
 int main()
 {
     cout << "**************************";
@@ -84,7 +87,10 @@ void fileBug(int id)
 
     //I assume that these are here to initialize cstrings for each of these things, except bugStatus of course
     //might just change these to string later, since C++ and all that
-    char name[20], bugType[50];
+    string name;
+    string name_ids;
+    string fileName;
+    string bugType;
     string bugDescription;
     string bugPriority;
     //int bugStatus; commented out since VS noted it's an unreferenced variable
@@ -92,17 +98,17 @@ void fileBug(int id)
     fstream ifile;
 
     //user name
-    cout << "Enter your name: " << "\n";
+    cout << "Enter your first name: " << "\n";
     cin >> name;
-    char ids[10];
-    _itoa(id, ids, 10);
-    strcat(name, ids);
-    char ex[] = ".txt";
-    strcat(name, ex);
+    string ids;
+    ids = to_string(id);
+    name_ids = strCat(name, ids);
+    string ex = ".txt";
+    fileName = strCat(name, ex);
 
     //filename of the bug
-    cout << "Filename: " << name << "\n";
-    ifile.open(name);
+    cout << "Filename: " << fileName << "\n";
+    ifile.open(fileName);
 
     //case when file cannot be created
     if (!ifile)
@@ -123,7 +129,7 @@ void fileBug(int id)
     ifile << "\n";
 
     cout << "Enter bug type:" << "\n";
-    cin >> bugType;
+    getline(cin, bugType);
 
     //bug type
     ifile << "TYPE OF BUG: " << "\n" << bugType;
@@ -131,7 +137,7 @@ void fileBug(int id)
 
     //bug priority
     cout << "Enter bug priority:" << "\n";
-    cin >> bugPriority;
+    getline(cin, bugPriority);
 
     ifile << "BUG PRIORITY: " << "\n" << bugPriority;
     ifile << "\n";
@@ -196,14 +202,14 @@ void changeStatus()
     ctime_s(timeBuffer, 26, &currentTime);
 
     fstream ifile;
-    char name[50];
-    string nameStr(name); //leaving this unused for the moment until I can get strcat_s (or an equivalent) to work with actual strings
+    string name;
+    string fileName;
 
     //bug file name
     cout << "Enter file name: " << "\n";
-    cin >> name;
-    char ex[] = ".txt";
-    strcat(name, ex);
+    getline(cin, name);
+    string ex = ".txt";
+    fileName = strCat(name, ex);
     
     //opening the bug in append mode
     ifile.open(name, ios_base::app);
@@ -253,17 +259,18 @@ void report()
     cout << "**************************";
 
     ifstream ifile;
-    char name[50];
+    string name;
+    string fileName;
 
     //asking the filename report the bug of the file
     cout << "Enter the file name:" << "\n";
-    cin >> name;
-    char ex[] = ".txt";
-    strcat(name, ex);
+    getline(cin, name);
+    string ex = ".txt";
+    fileName = strCat(name, ex);
 
     //opening the file in read mode
     //subsequent code heavily altered from original gfg's code upon implementation - updated to C++ standards
-    ifile.open(name);
+    ifile.open(fileName);
 
     while (!ifile.eof())
     {
@@ -271,4 +278,16 @@ void report()
     }
 
     ifile.close();
+}
+
+string strCat(string base, string toAdd)
+{
+    //alternate to c-standard's strcat
+    //this function works exclusively with strings, a space between the two different strings was omitted
+    //  due to this function being used only in the context of creating/opening files
+    
+    string meow;
+    meow = base + toAdd;
+
+    return meow;
 }
