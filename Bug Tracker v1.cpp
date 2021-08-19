@@ -2,9 +2,8 @@
 
 /* TO-DO:
 - (possibly) change time-dependent functions to rely on <chrono> instead of current <ctime>
-- fix strcat_s in fileBug to work with string variables
-    -> find a way to get strings to work with this project in the first place
 - see about making this its own library
+- investigate why report() does not exit to driver function
 */
 
 #include <iostream>
@@ -33,6 +32,7 @@ int main()
 
     //bug ID initialized to 0
     int id = 0;
+    cout << id; //here to check for something
 
     //while loop to run
     while (i != 0)
@@ -97,9 +97,12 @@ void fileBug(int id)
 
     fstream ifile;
 
+    //including following line in an attempt to fix the first getline in next block being skipped
+    cin.ignore();
+
     //user name
-    cout << "Enter your first name: " << "\n";
-    cin >> name;
+    cout << "Enter your name: " << "\n";
+    getline(cin, name);
     string ids;
     ids = to_string(id);
     name_ids = strCat(name, ids);
@@ -205,6 +208,9 @@ void changeStatus()
     string name;
     string fileName;
 
+    //obligatory conclusion of program-breaking prevention function here
+    cin.ignore();
+
     //bug file name
     cout << "Enter file name: " << "\n";
     getline(cin, name);
@@ -213,6 +219,10 @@ void changeStatus()
     
     //opening the bug in append mode
     ifile.open(name, ios_base::app);
+
+    //case when file cannot be opened
+    if(!ifile)
+        cout << "Cannot open desired file!" << "\n";
 
     cout << "\n" << "1. NOT YET ASSIGNED" << "\n";
     cout << "2. IN PROCESS" << "\n";
@@ -256,11 +266,14 @@ void report()
 {
     cout << "**************************";
     cout << "REPORT";
-    cout << "**************************";
+    cout << "**************************" << "\n";
 
     ifstream ifile;
     string name;
     string fileName;
+
+    //inclusion of program-breaking prevention function here
+    cin.ignore();
 
     //asking the filename report the bug of the file
     cout << "Enter the file name:" << "\n";
@@ -271,6 +284,10 @@ void report()
     //opening the file in read mode
     //subsequent code heavily altered from original gfg's code upon implementation - updated to C++ standards
     ifile.open(fileName);
+
+    //case when file cannot be opened
+    if(!ifile)
+        cout << "Cannot open desired file!" << "\n";
 
     while (!ifile.eof())
     {
