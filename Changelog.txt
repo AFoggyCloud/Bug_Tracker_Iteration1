@@ -12,3 +12,12 @@ Version 0.1 - 6/20/21-------------------------------------
 -> 7/8/2021
 - implemented bugStatus function
 - implemented report function
+-> 8/17/2021
+- integrated project with VSCode and Git
+- fixed issues with strcat
+-> 8/18/21
+- began investigating issues with getline
+- found and fixed issue with getline skip
+- updated TO-DO
+- began investigating line separation bug in report
+- began investigating failure of file creation in fileBug
